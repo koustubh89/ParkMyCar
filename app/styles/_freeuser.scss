@@ -1,0 +1,39 @@
+.freeuser{
+	ul{
+		width: 60%;
+		margin-left: auto;
+		margin-right: auto;
+		list-style-type:none;
+		li.suggestion{
+			padding: 10px 20px;
+			margin-bottom: 5px;
+		}
+
+		&.searchBox{
+			width: 60%;
+			li{
+				width: 100%;	
+			}
+		}
+	}
+	.results{
+		.availability{
+			height: 120px;
+		}
+		.chart{
+			height: 480px;
+		}
+		.map{
+			height: 480px;
+		}
+		.reachHere{
+			height: 80px;
+			a{
+				width: 100%;
+				font-size: 20px;
+				color: white;
+				text-align: center;
+			}
+		}
+	}
+}

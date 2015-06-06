@@ -8,7 +8,7 @@
 		    			<i class="glyphicon glyphicon-search" ng-click="searchChanged(searchFor)"></i>
 	    			</form>
 	    		</li>
-	    	</ul>{{index}}
+	    	</ul>
 	    	<ul class="suggestionContainer list-group">
 	    		<li ng-repeat="suggestion in suggestions" class=" suggestion list-group list-group-item-info" ng-click="changeSuggestion(suggestion)" ng-mouseover="index = suggestion.id" ng-mouseleave="index = ''" ng-class="{'selected': currentSuggestion.id == suggestion.id}">
 	    			<label ng-bind="suggestion.name"></label>
@@ -22,18 +22,17 @@
 	    		<span class="col-lg-7 text">The free parking slots at {{currentSuggestion.name}} is, </span>
 	    		<span class="col-lg-5 value" ng-bind="availabilty">a</span>
 	    	</div>
-	    	
-	    	<div class="chart" ng-show="!showChart">
+	    	<div class="chart" ng-show="showChart">
 	    		<div highchart data="chartData"></div>
 	    		chart
 	    	</div>
-	    	<div class="map" ng-show="showChart" id="map-canvas">
+	    	<div class="map" ng-show="!showChart" id="map-canvas">
 	    		map
 	    	</div>
 
 	    	<div class="reachHere btn btn-primary">
-	    		<a ng-show="showChart" ng-click="showChart = true" class="col-lg-12"> Get the latest rate</a>
-	    		<a ng-show="!showChart" ng-click="showChart = false" class="col-lg-12"> Let us help u reach, {{currentSuggestion.name}} <i class="glyphicon glyphicon-arrow-right"></i> </a>
+	    		<a ng-show="!showChart" ng-click="showChart = true" class="col-lg-12"> Get the latest rate</a>
+	    		<a ng-show="showChart" ng-click="showChart = false" class="col-lg-12"> Let us help u reach, {{currentSuggestion.name}} <i class="glyphicon glyphicon-arrow-right"></i> </a>
 	    	</div>
 
 		</div>

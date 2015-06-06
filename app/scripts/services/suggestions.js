@@ -43,7 +43,7 @@ angular.module('newEagleApp')
 				params = params;
 			}
 			if(isServer){
-				var url = "" + urlMethod;
+				var url = "http://172.16.1.182:9689/ParkMyCarService.svc/" + urlMethod;
 			}else{
 				var url = "scripts/json/"+ urlMethod +".json";
 			}

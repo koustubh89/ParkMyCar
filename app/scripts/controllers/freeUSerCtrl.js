@@ -42,9 +42,9 @@ angular.module('newEagleApp')
 	var displayPath = function(){
 		var start = $scope.currentSuggestion.name;
 		var end = "Vasant Kunj";
-		var initial = new google.maps.LatLng(27.99999, 77.9741874);
+		var initial = new google.maps.LatLng(28.503094, 77.070696);
 		var mapOptions = {
-    		zoom: 13,
+    		zoom: 6,
     		center: initial
   		}
   		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -84,6 +84,7 @@ angular.module('newEagleApp')
 	};
 	function attachInstructionText(marker, text) {
 		google.maps.event.addListener(marker, 'click', function() {
+			stepDisplay = new google.maps.InfoWindow();
 	    	stepDisplay.setContent(text);
 	    	stepDisplay.open(map, marker);
 	  	});

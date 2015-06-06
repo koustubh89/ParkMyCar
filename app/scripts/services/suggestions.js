@@ -2,44 +2,34 @@
 angular.module('newEagleApp')
 .factory("SuggestionService", function($http, $injector, $q) {
 
-	var callback = function (results, status) {
-	  	if (status == google.maps.places.PlacesServiceStatus.OK) {
-	    	//for (var i = 0; i < results.length; i++) {
-	      	//createMarker(results[i]);
-	    	//}
-	    	return results;
-	  	}
-	};
-	var initialize = function(longitude, lattitude) {
-	  	var pyrmont = new google.maps.LatLng(longitude, lattitude);
+	var map;
+ var res =[];
+ var initialize = function(lat,lng) {
+  var pyrmont = new google.maps.LatLng(lat,lng);
 
-	  	var map = new google.maps.Map(document.getElementById('map-canvas'), {
-	    	center: pyrmont,
-	    	zoom: 15
-	  	});
+  map = new google.maps.Map(document.getElementById('map-canvas'), {
+    center: pyrmont,
+    zoom: 15
+  });
 
-	  	var request = {
-	    	location: pyrmont,
-	    	radius: 1000,
-	    	types: ['food']
-	  	};
-	  	// infowindow = new google.maps.InfoWindow();
-	  	var service = new google.maps.places.PlacesService(map);
-		// var result = service.nearbySearch(request, callback);
-		var status =true;
-		var finalResult = [];
-		service.nearbySearch(request, function (results, status) {
-		  	if (status == google.maps.places.PlacesServiceStatus.OK) {
-		    	//for (var i = 0; i < results.length; i++) {
-		      	//createMarker(results[i]);
-		    	//}
-		    	finalResult = results;
-		  	}
-		});
-		// console.log(result);
-		return finalResult;
-	};
+  var request = {
+    location: pyrmont,
+    radius: 2000,
+    types: ['parking']
+  };
+  
+  var service = new google.maps.places.PlacesService(map);
+  var status = true;
+  service.nearbySearch(request, callback);
+};
 
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      res.push(results[i]);
+    }
+  }
+};
 
 	return {
 		getData : function(urlMethod, isServer, callType, params) {
@@ -98,8 +88,8 @@ angular.module('newEagleApp')
 	                lat = results[0].geometry.location.lat();
 	                lng = results[0].geometry.location.lng();
 	                console.log(lng, lat);
-	                var finalResult = initialize(lng, lat);
-	                return finalResult;
+	              initialize(lat, lng);
+	                return res;
                 } else {
 	                console.log('Geocode was not successful for the following reason: ' + status);
                     // alert('Geocode was not successful for the following reason: ' + status);

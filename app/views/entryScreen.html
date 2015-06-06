@@ -1,0 +1,26 @@
+<div class="body">
+	<div class="jumbotron hungInMidAir">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+			<div class="largeText col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-click="">
+				<span>	Going Somewhere	</span>
+				<span class="text-small" ng-click=""> tell us where !</span>
+				<form ng-submit="transferTo()">
+					<input ng-model="goingTo" placeholder="where are you going"/>
+				</form>
+				<span class="extra-small-text">we'll tell you if you can get a parking there</span>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+		</div>
+		<div class="row">&nbsp</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+			<div class="largeText col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-click="findPlace">
+				<span class="text-small">Let us help you find a place</span>
+				<input ng-model="where" ng-show="findPlace" placeholder="tell us where you are"/>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+
+		</div>
+	</div>	
+</div>

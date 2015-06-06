@@ -4,7 +4,6 @@ angular.module('newEagleApp')
 
 	var map;
 	var res =[];
-	var rest =[];
 
  	var initialize = function(lat,lng, d) {
   		var pyrmont = new google.maps.LatLng(lat,lng);
@@ -25,6 +24,7 @@ angular.module('newEagleApp')
 	  	// var result = service.nearbySearch(request, callback);
 	  	service.nearbySearch(request, function (results, status) {
 	  	if (status == google.maps.places.PlacesServiceStatus.OK) {
+	  		res = [];
 	    	for (var i = 0; i < results.length; i++) {
 	      		res.push(results[i]);
 	    	}

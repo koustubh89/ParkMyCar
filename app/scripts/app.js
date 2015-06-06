@@ -18,9 +18,10 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/',              {templateUrl: 'views/main.html',      controller: 'MainCtrl'  })
-      .when('/about',         {templateUrl: 'views/about.html',     controller: 'AboutCtrl' })
-      .when('/suggestions',   {templateUrl: 'views/freeUser.html',  controller: 'freeUserCtrl' })
+      .when('/main',          {templateUrl: 'views/main.html',          controller: 'MainCtrl'    })
+      .when('/about',         {templateUrl: 'views/about.html',         controller: 'AboutCtrl'   })
+      .when('/suggestions',   {templateUrl: 'views/freeUser.html',      controller: 'freeUserCtrl'})
+      .when('/welcome',       {templateUrl: 'views/entryScreen.html',   controller: 'welcomeCtrl' })
 
-      .otherwise({redirectTo: '/'});
+      .otherwise({redirectTo: '/welcome'});
   });

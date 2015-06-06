@@ -15,6 +15,10 @@
 				width: 100%;	
 			}
 		}
+		li.selected{
+			background-color: #996699;
+			color: white;
+		}
 	}
 	.results{
 		div{
@@ -29,6 +33,8 @@
 				font-weight: bold;
 				color: white;
 				padding-top: 20px;
+			  	text-overflow: ellipsis;
+			  	overflow: hidden;
 				&.text{
 					text-align: right;
 				}

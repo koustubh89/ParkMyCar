@@ -26,7 +26,6 @@ body {
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
-
   /* Make the masthead heading the same height as the navigation */
   h3 {
     margin-top: 0;
@@ -89,4 +88,22 @@ body {
   .jumbotron {
     border-bottom: 5px solid yellow;
   }
+}
+
+.header{
+    padding: 10px 60px;
+    .nav{
+      .nav-pills{
+        li.active{
+          a{
+            background-color: grey;
+            color: white;
+          }
+        }
+        .menu-items{
+          color: grey;
+          background-color: white;
+        }
+      }
+    }
 }

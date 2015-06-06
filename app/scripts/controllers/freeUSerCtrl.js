@@ -5,7 +5,9 @@ angular.module('newEagleApp')
 	var generateSuggesstions = function(){
 		SuggestionService.getLocationLatLong($scope.searchFor).then(function(response){
 			console.log(response);
-			$scope.suggestions = response;	
+			$scope.suggestions = [];
+			$scope.suggestions = response;
+			$scope.currentSuggestion = $scope.suggestions[0];
 		});
 	}
 
@@ -15,15 +17,16 @@ angular.module('newEagleApp')
 	$scope.currentSuggestion = '';
 
 	var statusCall = function(){
-		SuggestionService.getData('availabilityAndChart', false ,'get', {'':$currentSuggestion}).then(function(response){
+		SuggestionService.getData('availabilityAndChart', false ,'get', {'':$scope.currentSuggestion.name}).then(function(response){
 			$scope.chartData 	= response.chartData;
 			$scope.availabilty 	= response.availabilty;
 		});
 	};
 
 	$scope.changeSuggestion = function(idx){
-		$currentSuggestion = $scope.suggestions[idx].id;
-		statusCall();
+		var place = _.findIndex($scope.suggestions, idx);
+		$scope.currentSuggestion = $scope.suggestions[place];
+		// statusCall();
 	};
 
 	$scope.searchChanged = function(value){

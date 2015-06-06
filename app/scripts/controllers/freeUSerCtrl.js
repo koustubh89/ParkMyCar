@@ -33,76 +33,64 @@ angular.module('newEagleApp')
 		generateSuggesstions(value);
 	};
 
-	var DiplayPath = function(){
-		
-		var map;
-		var directionsDisplay;
-		var directionsService;
-		var stepDisplay;
-		var markerArray = [];
-
-		function initialize() {
-			directionsService = new google.maps.DirectionsService();
-  			var initial = new google.maps.LatLng(27.99999, 77.9741874);
-  			var mapOptions = {
-    			zoom: 13,
-    			center: initial
-  			}
-  			map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  			var rendererOptions = {
+	var directionsDisplay;
+	var directionsService;
+	var stepDisplay;
+	var markerArray = [];
+	var marker;
+	var map;
+	var displayPath = function(){
+		var start = $scope.currentSuggestion.name;
+		var end = "Vasant Kunj";
+		var initial = new google.maps.LatLng(27.99999, 77.9741874);
+		var mapOptions = {
+    		zoom: 13,
+    		center: initial
+  		}
+  		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		directionsService = new google.maps.DirectionsService();
+		var rendererOptions = {
     		map: map
   		}
-  		
   		directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
-  		stepDisplay = new google.maps.InfoWindow();
-		var start = "Delhi Cantonment, New Delhi, Delhi";
-		var end = "Mumbai, Maharashtra" ;
- 
-		calcRoute(start, end);
-	}
 
-	function calcRoute(startingPoint, endPoint) {
-  		for (var i = 0; i < markerArray.length; i++) {
-    		markerArray[i].setMap(null);
-  		}
-  		markerArray = [];
-  		var start = startingPoint;
-  		var end = endPoint ;
-  		var request = {
-      		origin: start,
-      		destination: end,
-      		travelMode: google.maps.TravelMode.WALKING
-  		};
-  		directionsService.route(request, function(response, status) {
-    		if (status == google.maps.DirectionsStatus.OK) {
-      			var warnings = document.getElementById('warnings_panel');
-      			warnings.innerHTML = '<b>' + response.routes[0].warnings + '</b>';
-      			directionsDisplay.setDirections(response);
-      			showSteps(response);
-    		}
-  		});
-	}
+		for (var i = 0; i < markerArray.length; i++) {
+			markerArray[i].setMap(null);
+		}
+		markerArray = [];
+		var request = {
+			origin: start,
+			destination: end,
+			travelMode: google.maps.TravelMode.WALKING
+		};
+		directionsService.route(request, function(response, status) {
+		    if (status == google.maps.DirectionsStatus.OK) {
+		    	directionsDisplay.setDirections(response);
+			    showSteps(response);
+			}
+		});
+	};
 
 	function showSteps(directionResult) {
-  		var myRoute = directionResult.routes[0].legs[0];	
-  		for (var i = 0; i < myRoute.steps.length; i++) {
-    		var marker = new google.maps.Marker({
-      			position: myRoute.steps[i].start_location,
-      			map: map
-    		});
-    		attachInstructionText(marker, myRoute.steps[i].instructions);
-    		markerArray[i] = marker;
-  		}
-	}
-
+		var myRoute = directionResult.routes[0].legs[0];
+	  	for (var i = 0; i < myRoute.steps.length; i++) {
+		     marker = new google.maps.Marker({
+			    position: myRoute.steps[i].start_location,
+	    		map: map
+	    	});
+	    	attachInstructionText(marker, myRoute.steps[i].instructions);
+	    	markerArray[i] = marker;
+	  	}
+	};
 	function attachInstructionText(marker, text) {
-  		google.maps.event.addListener(marker, 'click', function() {
-    		stepDisplay.setContent(text);
-    		stepDisplay.open(map, marker);
-  		});
-	}
+		google.maps.event.addListener(marker, 'click', function() {
+	    	stepDisplay.setContent(text);
+	    	stepDisplay.open(map, marker);
+	  	});
+	};
 
-	google.maps.event.addDomListener(window, 'load', initialize);
+	$scope.getCurrentLocation = function(){
+		displayPath();
 	}
 
 	// generateSuggesstions();

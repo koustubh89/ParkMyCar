@@ -32,7 +32,7 @@
 
 	    	<div class="reachHere btn btn-primary">
 	    		<a ng-show="!showChart" ng-click="showChart = true" class="col-lg-12"> Get the latest rate</a>
-	    		<a ng-show="showChart" ng-click="showChart = false" class="col-lg-12"> Let us help u reach, {{currentSuggestion.name}} <i class="glyphicon glyphicon-arrow-right"></i> </a>
+	    		<a ng-show="showChart" ng-click="getCurrentLocation();showChart = false" class="col-lg-12"> Let us help u reach, {{currentSuggestion.name}} <i class="glyphicon glyphicon-arrow-right"></i> </a>
 	    	</div>
 
 		</div>

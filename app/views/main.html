@@ -1,7 +1,20 @@
 <div class="row registeredUser">
+    <div class="row">
+        <button ng-class="{'red':!live, 'green':live}" ng-click="live = !live" class="btn">
+            live 
+            <span class="glyphicon glyphicon-off"></span>
+        </button>
+        
+        <button class="btn btn-primary" ng-class="{'active': showEditDetails}" ng-click="showEditDetails = true">
+            Details
+        </button>
+
+        <button class="btn btn-primary" ng-class="{'active': showEditDetails}" ng-click="showEditDetails = true">
+            Parking Status  
+        </button>
+    </div>
 
     <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 logoDiv">
-
     </div>
     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 UserDecision">
         <div class="clearfix">

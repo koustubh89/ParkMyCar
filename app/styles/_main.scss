@@ -91,19 +91,33 @@ body {
 }
 
 .header{
-    padding: 10px 60px;
-    .nav{
-      .nav-pills{
-        li.active{
-          a{
-            background-color: grey;
-            color: white;
-          }
-        }
-        .menu-items{
-          color: grey;
-          background-color: white;
+  padding: 10px 60px;
+  .nav{
+    .nav-pills{
+      li.active{
+        a{
+          background-color: grey;
+          color: white;
         }
       }
+      .menu-items{
+        color: grey;
+        background-color: white;
+      }
     }
+  }
+}
+
+.loginForm{
+  input[type=text], input[type=password]{
+    width: 80%;
+    padding: 2px 3px;
+    margin: 0px 0px;
+    border-radius: 6px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-size: 25px;
+  }
 }

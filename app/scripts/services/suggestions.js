@@ -3,33 +3,35 @@ angular.module('newEagleApp')
 .factory("SuggestionService", function($http, $injector, $q) {
 
 	var map;
- var res =[];
- var initialize = function(lat,lng) {
-  var pyrmont = new google.maps.LatLng(lat,lng);
+	var res =[];
+	var rest =[];
 
-  map = new google.maps.Map(document.getElementById('map-canvas'), {
-    center: pyrmont,
-    zoom: 15
-  });
+ 	var initialize = function(lat,lng, d) {
+  		var pyrmont = new google.maps.LatLng(lat,lng);
 
-  var request = {
-    location: pyrmont,
-    radius: 2000,
-    types: ['parking']
-  };
-  
-  var service = new google.maps.places.PlacesService(map);
-  var status = true;
-  service.nearbySearch(request, callback);
-};
+  		map = new google.maps.Map(document.getElementById('map-canvas'), {
+	    	center: pyrmont,
+	    	zoom: 15
+	  	});
 
-function callback(results, status) {
-  if (status == google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
-      res.push(results[i]);
-    }
-  }
-};
+	  	var request = {
+	    	location: pyrmont,
+	    	radius: 2000,
+	    	types: ['parking']
+	  	};
+	  
+	  	var service = new google.maps.places.PlacesService(map);
+	  	var status = true;
+	  	// var result = service.nearbySearch(request, callback);
+	  	service.nearbySearch(request, function (results, status) {
+	  	if (status == google.maps.places.PlacesServiceStatus.OK) {
+	    	for (var i = 0; i < results.length; i++) {
+	      		res.push(results[i]);
+	    	}
+	    	d.resolve(res);
+	  	}
+		});
+	};
 
 	return {
 		getData : function(urlMethod, isServer, callType, params) {
@@ -63,9 +65,13 @@ function callback(results, status) {
 			}).error(function() {
 				console.error("error block");
 			});		
-			return deferred.promise;		
+			return deferred.promise;	
 		},
 		getLocationLatLong : function(address){
+
+			var q = $injector.get("$q");
+			var deferred = $q.defer();
+
 			var geocoder = new google.maps.Geocoder();
 			var lat = '';
             var lng = '';
@@ -78,6 +84,7 @@ function callback(results, status) {
 		    	zoom: 15
 		  	});
 
+		 	// return new promise(function(resolve, reject){
             geocoder.geocode( { 'address': address}, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
@@ -88,13 +95,18 @@ function callback(results, status) {
 	                lat = results[0].geometry.location.lat();
 	                lng = results[0].geometry.location.lng();
 	                console.log(lng, lat);
-	              initialize(lat, lng);
-	                return res;
+	                initialize(lat, lng, deferred);
+	                // console.log(res);
+	                // return rest;
+	                // deferred.resolve(res);
                 } else {
+
 	                console.log('Geocode was not successful for the following reason: ' + status);
                     // alert('Geocode was not successful for the following reason: ' + status);
+                    deferred.reject(data);
                 }
         	});
+			return deferred.promise;           
 		}
 	};		
 });

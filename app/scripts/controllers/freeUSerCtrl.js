@@ -3,8 +3,13 @@ angular.module('newEagleApp')
 .controller('freeUserCtrl', ["$scope","SuggestionService", "$interval", function ($scope, SuggestionService, $interval) {
 
 	var generateSuggesstions = function(){
-		$scope.suggestions = SuggestionService.getLocationLatLong($scope.searchFor);
+		SuggestionService.getLocationLatLong($scope.searchFor).then(function(response){
+			console.log(response);
+			$scope.suggestions = response;	
+		});
 	}
+
+	$scope.suggestions = [];
 
 	$scope.availabilty 	= '28';
 	$scope.currentSuggestion = '';
@@ -17,7 +22,7 @@ angular.module('newEagleApp')
 	};
 
 	$scope.changeSuggestion = function(idx){
-		$currentSuggestion = $scope.suggestions[idx];
+		$currentSuggestion = $scope.suggestions[idx].id;
 		statusCall();
 	};
 

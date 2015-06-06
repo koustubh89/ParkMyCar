@@ -8,9 +8,9 @@
 	    		</li>
 	    	</ul>{{index}}
 	    	<ul class="suggestionContainer list-group">
-	    		<li ng-repeat="suggestion in suggestions" class=" suggestion list-group list-group-item-info" ng-click="changeSuggestion()" ng-mouseover="index = suggestion"
+	    		<li ng-repeat="suggestion in suggestions" class=" suggestion list-group list-group-item-info" ng-click="changeSuggestion()" ng-mouseover="index = suggestion.id"
 	    		ng-mouseleave="index = ''">
-	    			<label ng-bind="suggestion"></label>
+	    			<label ng-bind="suggestion.name"></label>
 	    			<i class="glyphicon glyphicon-chevron-right pull-right" ng-show="index == suggestion"></i>
 	    		</li>
 	    	</ul>

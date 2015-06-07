@@ -18,8 +18,40 @@ angular.module('newEagleApp')
     	SuggestionService.getData('saveData', false, 'post', $scope.parking).then(function(success){
     		console.log('saved');
     	});
-    		$scope.editName 		=  	false;
-    		$scope.editCapacity		=  	false;
-    		$scope.editOperatorName = 	false;
+		$scope.editName 		=  	false;
+		$scope.editCapacity		=  	false;
+		$scope.editOperatorName = 	false;
+    };
+
+    $scope.sendLive = function(){
+        $scope.live = !$scope.live;
+        SuggestionService.getData('sendLive/'+$scope.now, false, 'get').then(function(response){
+            $scope.carNumber = 0;
+        });
+        if($scope.live){
+            $scope.showEditDetails = false;
+        }else{
+            $scope.showEditDetails = true;
+        }
+    }
+
+    $scope.plusStatus = function(){
+        $scope.carNumber++ ;
+        var temp = {
+            "ParkingId"             : $scope.parking,
+            "ChangeInNumberOfCar"   : $scope.carNumber,
+            "UserId"                : $scope.UserId
+        };
+        SuggestionService.getData('/AddTimeStamp', false, 'post', temp).then(function(response){});
+    };
+
+    $scope.minusStatus = function(){
+        $scope.carNumber-- ;
+        var temp = {
+            "ParkingId"             : $scope.parking,
+            "ChangeInNumberOfCar"   : $scope.carNumber,
+            "UserId"                : $scope.UserId
+        };
+        SuggestionService.getData('/AddTimeStamp', false, 'post', temp).then(function(response){});
     };
 }]);

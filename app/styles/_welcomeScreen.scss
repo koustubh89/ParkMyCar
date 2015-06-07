@@ -37,12 +37,13 @@
 		border-radius: 10px; 
 		span{
 			display: block;
+			font-size: 20px;
 			&.text-small{
 				padding: 5px;
 				font-size: 16px;
 			}
 			&.extra-small-text{
-				padding-top: 20px;
+				padding-top: 10px;
 				font-size: 8px;
 			}
 		}

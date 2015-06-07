@@ -8,59 +8,94 @@
             Details
         </button>
 
-        <button ng-class="{'red':!live, 'green':live}" ng-click="live = !live" class="btn btn-default pull-right">
+        <button ng-class="{'red':!live, 'green':live}" ng-click="sendLive()" class="btn btn-default pull-right">
             live 
             <span class="glyphicon glyphicon-off"></span>
         </button>
     </div>
 
     <div class="details clearfix" ng-show="showEditDetails">
-        <div ng-show="!editName" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <label class="formDetails" ng-bind="parking.name"></label>
-            <i class="glyphicon glyphicon-pencil" ng-click="editName = true"></i>
-        </div> 
-        <div ng-show="editName" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8"> 
-            <input class="detailForm" ng-model="parking.name"/>
-            <i class="glyphicon glyphicon-floppy-saved" ng-click="save()"></i>
-        </div> 
-
-        <div ng-show="!editCapacity" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <label class="formDetails" ng-bind="parking.capacity"></label>
-            <i class="glyphicon glyphicon-pencil" ng-click="editCapacity = true"></i>
+        <div class="clearfix">
+            <div class="col-lg-4"></div>
+            <div ng-show="!editName" class="informationDiv col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <span>Parking name</span>
+                <label class="formDetails" ng-bind="parking.name"></label>
+                <i class="glyphicon glyphicon-pencil" ng-click="editName = true"></i>
+            </div>
+            <div class="col-lg-4"></div>
         </div>
-        <div ng-show="editCapacity" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <input class="detailForm" ng-model="parking.capacity"/>
-            <i class="glyphicon glyphicon-floppy-saved" ng-click="save()"></i>
+
+        <div class="clearfix">
+            <div class="col-lg-4"></div>
+            <div ng-show="editName" class="informationDiv col-xs-12 col-sm-12 col-md-4 col-lg-4"> 
+                <span>Parking name</span>
+                <input class="detailForm" ng-model="parking.name"/>
+                <i class="glyphicon glyphicon-floppy-saved" ng-click="save()"></i>
+            </div> 
+            <div class="col-lg-4"></div>
+        </div>
+
+        <div class="clearfix">
+            <div class="col-lg-4"></div>
+            <div ng-show="!editCapacity" class="informationDiv col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <span>Parking Capacity</span>
+                <label class="formDetails" ng-bind="parking.capacity"></label>
+                <i class="glyphicon glyphicon-pencil" ng-click="editCapacity = true"></i>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+
+        <div class="clearfix">
+            <div class="col-lg-4"></div>
+            <div ng-show="editCapacity" class="informationDiv col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <span>Parking Capacity</span>
+                <input class="detailForm" ng-model="parking.capacity"/>
+                <i class="glyphicon glyphicon-floppy-saved" ng-click="save()"></i>
+            </div>
+            <div class="col-lg-4"></div>
         </div>
         
-        <div ng-show="!editOperatorName" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <label class="formDetails" ng-bind="parking.operatorName"></label>
-            <i class="glyphicon glyphicon-pencil" ng-click="editOperatorName = true"></i>
+        <div class="clearfix">
+            <div class="col-lg-4"></div>
+            <div ng-show="!editOperatorName" class="informationDiv col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <span>Parking Managed by</span>
+                <label class="formDetails" ng-bind="parking.operatorName"></label>
+                <i class="glyphicon glyphicon-pencil" ng-click="editOperatorName = true"></i>
+            </div>
+            <div class="col-lg-4"></div>
         </div>
-        <div ng-show="editOperatorName" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <input class="detailForm" ng-model="parking.operatorName" />
-            <i class="glyphicon glyphicon-floppy-saved" ng-click="save()"></i>
+
+        <div class="clearfix">
+            <div class="col-lg-4"></div>
+            <div ng-show="editOperatorName" class="informationDiv col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <span>Parking Managed by</span>
+                <input class="detailForm" ng-model="parking.operatorName" />
+                <i class="glyphicon glyphicon-floppy-saved" ng-click="save()"></i>
+            </div>
+            <div class="col-lg-4"></div>
         </div>
 
     </div>
-    <div class="parkingStatus" ng-show="!showEditDetails">
+
+    <div class="parkingStatus clearfix" ng-show="!showEditDetails">
         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 logoDiv">
+        
         </div>
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 UserDecision">
             <div class="clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="info-box green-bg">
-                        <i class="fa fa-shopping-cart"></i>
-                        <div class="count">7.538</div>
-                        <div class="title">Purchased</div>                      
+                        <div class="btn btn-defualt">
+                            <i class="glyphicon glyphicon-plus"></i>
+                        </div>
                     </div><!--/.info-box-->         
                 </div><!--/.col-->
-                
+                <span class="col-lg-12" ng-bind="carNumber"></span>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="info-box dark-bg">
-                        <i class="fa fa-thumbs-o-up"></i>
-                        <div class="count">4.362</div>
-                        <div class="title">Order</div>                      
+                        <div class="btn btn-defualt">
+                            <i class="glyphicon glyphicon-minus"></i>
+                        </div>
                     </div><!--/.info-box-->         
                 </div><!--/.col-->
             </div>    

@@ -6,7 +6,7 @@ angular.module('newEagleApp')
 
 	};
 	$scope.transferTo = function(){
-		// $scope.goingTo = '';
+		//$scope.goingTo = '';
 		console.log('reached');
 		$location.path('/suggestions/'+$scope.goingTo);
 	};

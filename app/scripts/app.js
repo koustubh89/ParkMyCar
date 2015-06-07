@@ -16,12 +16,15 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/registered',            {templateUrl: 'views/main.html',          controller: 'MainCtrl'    })
       .when('/about',                 {templateUrl: 'views/about.html',         controller: 'AboutCtrl'   })
-      .when('/suggestions',           {templateUrl: 'views/freeUser.html',      controller: 'freeUserCtrl'})
+      .when('/suggestions/:search',   {templateUrl: 'views/freeUser.html',      controller: 'freeUserCtrl'})
       .when('/welcome',               {templateUrl: 'views/entryScreen.html',   controller: 'welcomeCtrl' })
 
       .otherwise({redirectTo: '/welcome'});
+
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+    $httpProvider.defaults.headers.post["Content-Type"] = 'application/x-www-form-urlencoded';
   });

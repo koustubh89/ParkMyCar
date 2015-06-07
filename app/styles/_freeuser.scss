@@ -1,23 +1,31 @@
 .freeuser{
 	ul{
-		width: 60%;
+		width: 90%;
 		margin-left: auto;
 		margin-right: auto;
 		list-style-type:none;
 		li.suggestion{
 			padding: 10px 20px;
 			margin-bottom: 5px;
+			border-radius: 5px;
 		}
 
 		&.searchBox{
-			width: 60%;
+			// width: 60%;
 			li{
 				width: 100%;	
+				input[type=text]{
+					width:60%;
+				}
 			}
 		}
 		li.selected{
 			background-color: #996699;
 			color: white;
+		}
+		li.highlighter{
+			background-color: #0A8D8F;
+			color: white;	
 		}
 	}
 	.results{

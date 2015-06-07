@@ -1,6 +1,6 @@
 'use strict';
 angular.module('newEagleApp')
-.controller('freeUserCtrl', ["$scope","SuggestionService", "$interval", function ($scope, SuggestionService, $interval) {
+.controller('freeUserCtrl', ["$scope","SuggestionService", "$interval","$routeParams", function ($scope, SuggestionService, $interval, $routeParams) {
 
 	var generateSuggesstions = function(){
 		SuggestionService.getLocationLatLong($scope.searchFor).then(function(response){
@@ -10,6 +10,7 @@ angular.module('newEagleApp')
 			$scope.currentSuggestion = $scope.suggestions[0];
 		});
 	}
+
 
 	$scope.suggestions = [];
 
@@ -93,7 +94,8 @@ angular.module('newEagleApp')
 		displayPath();
 	}
 
-	// generateSuggesstions();
-	// $interval(statusCall, 5000);
+	$scope.searchFor = $routeParams.search;
+	console.log($routeParams.search);
+	$scope.searchChanged();
 	
 }]);

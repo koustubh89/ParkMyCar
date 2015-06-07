@@ -1,6 +1,6 @@
 'use strict';
 angular.module('newEagleApp')
-.controller('root', ["$scope","SuggestionService", "$interval","$location", function ($scope, SuggestionService, $interval, $location) {
+.controller('root', ["$scope","SuggestionService", "$interval","$location", "$routeParams", function ($scope, SuggestionService, $interval, $location, $routeParams) {
 
 
 	$scope.submitLoginDetails = function(){

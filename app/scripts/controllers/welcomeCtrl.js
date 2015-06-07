@@ -11,4 +11,8 @@ angular.module('newEagleApp')
 		$location.path('/suggestions/'+$scope.goingTo);
 	};
 
+	$scope.findUserSuggestions = function(){
+		$location.path('/suggestions/'+$scope.where);
+	};
+
 }]);

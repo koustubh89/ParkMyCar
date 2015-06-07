@@ -1,6 +1,6 @@
 <div class="freeuser ">
-	<div class="">
-	    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 suggestionBox">
+	<div class="clearfix">
+	    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 suggestionBox row">
 	    	<ul class="searchBox row">
 	    		<li class="col-lg-12"> 
 	    			<form ng-submit="searchChanged(searchFor)">
@@ -19,19 +19,18 @@
 	    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 results row">
 	    	
 	    	<div class="availability dark-bg">
-	    		<span class="col-lg-7 text">The free parking slots at {{currentSuggestion.name}} is, </span>
-	    		<span class="col-lg-5 value" ng-bind="availabilty">a</span>
+	    		<span class="col-lg-8 text">The free parking slots at {{currentSuggestion.name}} is, </span>
+	    		<span class="col-lg-4 value" ng-bind="availabilty">a</span>
 	    	</div>
-	    	<div class="chart" ng-show="showChart">
-	    		<div highchart data="chartData"></div>
-	    		chart
+	    	<div class="chart" ng-show="showChart" id="lineChart">
+
 	    	</div>
 	    	<div class="map" ng-show="!showChart" id="map-canvas">
-	    		map
+	    		
 	    	</div>
 
 	    	<div class="reachHere btn btn-primary">
-	    		<a ng-show="!showChart" ng-click="showChart = true" class="col-lg-12"> Get the latest rate</a>
+	    		<a ng-show="!showChart" ng-click="getRate()" class="col-lg-12"> Get the latest rate</a>
 	    		<a ng-show="showChart" ng-click="getCurrentLocation();showChart = false" class="col-lg-12"> Let us help u reach, {{currentSuggestion.name}} <i class="glyphicon glyphicon-arrow-right"></i> </a>
 	    	</div>
 

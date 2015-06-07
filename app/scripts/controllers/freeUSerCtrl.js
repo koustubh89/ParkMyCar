@@ -10,8 +10,7 @@ angular.module('newEagleApp')
 			$scope.currentSuggestion = $scope.suggestions[0];
 		});
 	}
-
-
+	
 	$scope.suggestions = [];
 
 	$scope.availabilty 	= '28';
@@ -24,10 +23,59 @@ angular.module('newEagleApp')
 		});
 	};
 
+	$scope.values = [{
+        name: 'Tokyo',
+        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+    }];
+
+	var plotLineChart = function(values){
+		$('#lineChart').highcharts({
+	        title: {
+	            text: 'Parking occupancy stats at '+$scope.currentSuggestion.name+' during last 4 hours',
+	            x: -20 //center
+	        },
+	        subtitle: {
+	            text: 'Fetching latest parking status just for you',
+	            x: -20
+	        },
+	        xAxis: {
+	            categories: ['5pm','6pm','7pm','8pm']
+	        },
+	        yAxis: {
+	            title: {
+	                text: 'Occupancy'
+	            },
+	            plotLines: [{
+	                value: 0,
+	                width: 1,
+	                color: '#808080'
+	            }]
+	        },
+	        tooltip: {
+	            valueSuffix: ''
+	        },
+	        legend: {
+	            layout: 'vertical',
+	            align: 'right',
+	            verticalAlign: 'middle',
+	            borderWidth: 0
+	        },
+	        series: values 
+	    });
+	};
+	$scope.getRate = function( ){
+		$scope.showChart = true;
+		// SuggestionService.getData('GetTimeStampById'+$scope.currentSuggestion.id).then(function(response){
+		// 	$scope.values = response
+		// });
+		plotLineChart($scope.values);
+	};
 	$scope.changeSuggestion = function(idx){
 		var place = _.findIndex($scope.suggestions, idx);
 		$scope.currentSuggestion = $scope.suggestions[place];
+		$scope.showChart = false;
 		// statusCall();
+		getRate();
 	};
 
 	$scope.searchChanged = function(value){
@@ -92,7 +140,7 @@ angular.module('newEagleApp')
 
 	$scope.getCurrentLocation = function(){
 		displayPath();
-	}
+	};
 
 	$scope.searchFor = $routeParams.search;
 	console.log($routeParams.search);

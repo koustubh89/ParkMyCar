@@ -33,7 +33,6 @@
 	.parkingStatus{
 		.UserDecision{
 			padding: 40px 0px;
-			border-left: 1px solid grey;
 			.info-box{
 				padding-top: 10px;
 				text-align: center;
@@ -47,6 +46,9 @@
 		}
 		.logo{
 
+		}
+		.carnumber{
+			display: block;
 		}
 	}
 }

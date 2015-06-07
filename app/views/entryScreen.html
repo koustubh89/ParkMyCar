@@ -17,7 +17,9 @@
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
 			<div class="largeText col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-click="findPlace">
 				<span class="text-small">Let us help you find a place</span>
+				<form ng-submit="findUserSuggestions()">
 				<input ng-model="where" ng-show="findPlace" placeholder="tell us where you are"/>
+				</form>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
 

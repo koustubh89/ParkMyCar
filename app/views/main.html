@@ -1,48 +1,46 @@
-<div class="row registeredUser">
-    <div class="row">
-        <button ng-class="{'red':!live, 'green':live}" ng-click="live = !live" class="btn">
-            live 
-            <span class="glyphicon glyphicon-off"></span>
+<div class="registeredUser">
+    <div class="clearfix btn-controls">
+        <button class="btn btn-primary pull-right" ng-class="{'active': showEditDetails}" ng-click="showEditDetails = true">
+            Parking Status  
         </button>
         
-        <button class="btn btn-primary" ng-class="{'active': showEditDetails}" ng-click="showEditDetails = true">
+        <button class="btn btn-primary pull-right" ng-class="{'active': showEditDetails}" ng-click="showEditDetails = true">
             Details
         </button>
 
-        <button class="btn btn-primary" ng-class="{'active': showEditDetails}" ng-click="showEditDetails = true">
-            Parking Status  
+        <button ng-class="{'red':!live, 'green':live}" ng-click="live = !live" class="btn btn-default pull-right">
+            live 
+            <span class="glyphicon glyphicon-off"></span>
         </button>
     </div>
 
-    <div class="details" ng-show="showEditDetails">
-        <label class="formDetails" ng-bind="parking.name" ng-show="!editName"></label>
-        <i class="glyphicon glyphicon-pencil" ng-click="editName = true"></i>
-        <input class="detailForm" ng-model="parking.name" ng-show="editName"/>
-        <i class="glyphicon glyphicon-floppy-saved"></i>
+    <div class="details clearfix" ng-show="showEditDetails">
+        <div ng-show="!editName" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <label class="formDetails" ng-bind="parking.name"></label>
+            <i class="glyphicon glyphicon-pencil" ng-click="editName = true"></i>
+        </div> 
+        <div ng-show="editName" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8"> 
+            <input class="detailForm" ng-model="parking.name"/>
+            <i class="glyphicon glyphicon-floppy-saved" ng-click="save()"></i>
+        </div> 
 
-
-        <label class="formDetails" ng-bind="parking.capacity" ng-show="editCapacity"></label>
-        <i class="glyphicon glyphicon-pencil" ng-click="editCapacity = true"></i>
-        <input class="detailForm" ng-model="parking.capacity" ng-show="editCapacity"/>
-        <i class="glyphicon glyphicon-floppy-saved"></i>
-
-        <label class="formDetails" ng-bind="parking.operatorName" ng-show="editOperatorName"></label>
-        <i class="glyphicon glyphicon-pencil" ng-click="editOperatorName = true"></i>
-        <input class="detailForm" ng-model="parking.operatorName" ng-show="editOperatorName"/>
-        <i class="glyphicon glyphicon-floppy-saved"></i>
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <div ng-show="!editCapacity" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <label class="formDetails" ng-bind="parking.capacity"></label>
+            <i class="glyphicon glyphicon-pencil" ng-click="editCapacity = true"></i>
+        </div>
+        <div ng-show="editCapacity" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <input class="detailForm" ng-model="parking.capacity"/>
+            <i class="glyphicon glyphicon-floppy-saved" ng-click="save()"></i>
+        </div>
+        
+        <div ng-show="!editOperatorName" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <label class="formDetails" ng-bind="parking.operatorName"></label>
+            <i class="glyphicon glyphicon-pencil" ng-click="editOperatorName = true"></i>
+        </div>
+        <div ng-show="editOperatorName" class="informationDiv col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <input class="detailForm" ng-model="parking.operatorName" />
+            <i class="glyphicon glyphicon-floppy-saved" ng-click="save()"></i>
+        </div>
 
     </div>
     <div class="parkingStatus" ng-show="!showEditDetails">

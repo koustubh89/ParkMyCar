@@ -4,5 +4,4 @@ angular.module('newEagleApp')
 
 	console.log('registered user');
 
-	
 }]);

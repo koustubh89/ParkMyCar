@@ -18,7 +18,7 @@ angular
   ])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
-      .when('/registered',            {templateUrl: 'views/main.html',          controller: 'MainCtrl'    })
+      .when('/registered/:parkingId', {templateUrl: 'views/main.html',          controller: 'MainCtrl'    })
       .when('/about',                 {templateUrl: 'views/about.html',         controller: 'AboutCtrl'   })
       .when('/suggestions/:search',   {templateUrl: 'views/freeUser.html',      controller: 'freeUserCtrl'})
       .when('/welcome',               {templateUrl: 'views/entryScreen.html',   controller: 'welcomeCtrl' })

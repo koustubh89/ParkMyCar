@@ -26,6 +26,7 @@
         </div>
         <div ng-view=""></div>
         <!-- Button trigger modal -->
+
         <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">
           Parking Providers
         </button>
@@ -47,6 +48,44 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary">DashBoard</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-lg pull-left" data-toggle="modal" data-target="#register">
+            Register with us!
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form ng-submit="submitSignupDetails()" class="loginForm">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Be a parking provider</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" ng-model="newParking.UserName" placeholder="pick a user name" />
+                            <br/> 
+                            <input type="password" ng-model="newParking.Password" placeholder="pick a password" />
+                            <br/>
+                            <input type="text" ng-model="newParking.address" placeholder="address of your place"/>
+                            <br/>
+                            <input type="text" ng-model="newParking.vicinity" placeholder="a nearby landmark" />
+                            <br/>
+                            <input type="text" ng-model="newParking.phone" placeholder="contact number"/>
+                            <br/>
+                            <input type="text" ng-model="newParking.capacity" placeholder="capacity at your place"/>
+                            <br/>
+                            <input type="text" ng-model="newParking.phone" placeholder="contact number"/>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Register</button>
                         </div>
                     </form>
                 </div>

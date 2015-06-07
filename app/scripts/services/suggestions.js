@@ -132,7 +132,7 @@ angular.module('newEagleApp')
 	                lat = results[0].geometry.location.lat();
 	                lng = results[0].geometry.location.lng();
 	                console.log(lng, lat);
-	                deferred.resolve([lat, lng]]);
+	                deferred.resolve([lat, lng]);
                 } else {
 
 	                console.log('Geocode was not successful for the following reason: ' + status);
